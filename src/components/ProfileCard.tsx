@@ -2,12 +2,13 @@ import React from "react";
 import styled from "styled-components";
 
 interface ProfileCardProps {
+  id: number;
   name: string;
   age: number;
-  bio: string;
-  image: string;
+  interests: string;
+  university:string
 }
-
+const img = "https://via.placeholder.com/300x400";
 const Card = styled.div`
   position: relative;
   width: 300px;
@@ -31,14 +32,15 @@ const ProfileInfo = styled.div`
   border-radius: 10px;
 `;
 
-const ProfileCard = ({ name, age, bio, image }: ProfileCardProps) => {
+const ProfileCard = ({ name, age, interests,university }: ProfileCardProps) => {
   return (
-    <Card style={{ backgroundImage: `url(${image})` }}>
+    <Card style={{ backgroundImage: `url(${img})` }}>
       <ProfileInfo>
         <h2>
           {name}, {age}
         </h2>
-        <p>{bio}</p>
+        <h3>{university}</h3>
+        <p>{interests}</p>
       </ProfileInfo>
     </Card>
   );
