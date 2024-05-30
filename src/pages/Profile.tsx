@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import ProfileCard from "./ProfileCard";
+import ProfileCard from "../components/ProfileCard";
 import { useSwipeable } from "react-swipeable";
+import StyledButton from "../components/StyledButton";
 
 const Container = styled.div`
   display: flex;
@@ -30,46 +31,34 @@ const profiles = [
   },
 ];
 
-const Button = styled.button`
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  &:disabled {
-    background-color: #cccccc;
-    cursor: not-allowed;
-  }
-`;
+const Profile = () => {
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
 
-const Profile: React.FC = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const handleNext = () => {
+    if (currentIndex < profiles.length - 1) {
+      setCurrentIndex(currentIndex + 1);
+    }
+  };
 
-    const handleNext = () => {
-      if (currentIndex < profiles.length - 1) {
-        setCurrentIndex(currentIndex + 1);
-      }
-    };
-
-    const handleBack = () => {
-      if (currentIndex > 0) {
-        setCurrentIndex(currentIndex - 1);
-      }
-    };
+  const handleBack = () => {
+    if (currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1);
+    }
+  };
 
   return (
     <Container>
-      <Button onClick={handleBack} disabled={currentIndex === 0}>
-        Back
-      </Button>
+      <StyledButton
+        onClick={handleBack}
+        label={"Back"}
+        disabled={currentIndex === 0}
+      />
       <ProfileCard {...profiles[currentIndex]} />
-      <Button
+      <StyledButton
         onClick={handleNext}
+        label={"Next"}
         disabled={currentIndex === profiles.length - 1}
-      >
-        Next
-      </Button>
+      />
     </Container>
   );
 };

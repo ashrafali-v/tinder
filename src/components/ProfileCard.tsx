@@ -31,7 +31,7 @@ const ProfileInfo = styled.div`
   border-radius: 10px;
 `;
 
-const ProfileCard: React.FC<ProfileCardProps> = ({ name, age, bio, image }) => {
+const ProfileCard = ({ name, age, bio, image }: ProfileCardProps) => {
   return (
     <Card style={{ backgroundImage: `url(${image})` }}>
       <ProfileInfo>
