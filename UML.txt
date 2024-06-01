@@ -1,0 +1,63 @@
+1. Database Schema Diagram (ER Diagram)
+
+┌──────────┐        ┌──────────────────┐
+│   users  │        │ Attributes       │
+├──────────┤        ├──────────────────┤
+│   id     │        │ id (PK)          │
+│   name   │        │ name             │
+│  gender  │        │ gender           │
+│ location │        │ location         │
+│university│        │ university       │
+│interests │        │ interests        │
+└──────────┘        └──────────────────┘
+
+
+2. Logic Flow Diagram
+
++---------------------------------------+
+| Start                                |
+|                                       |
+| User initiates recommendation request |
++--------------------+------------------+
+                     |
+                     v
++---------------------------------------+
+| Query database for all users except  |
+| the current user                     |
+|                                       |
+| SQL: SELECT id, name, gender,         |
+| location, university, interests       |
+| FROM users WHERE id != ?;             |
++--------------------+------------------+
+                     |
+                     v
++---------------------------------------+
+| Calculate similarity score for each   |
+| user based on interests and university|
+|                                       |
+| Function: calculateSimilarity         |
+| - Common interests: 1 point each      |
+| - Same university: 3 points           |
++--------------------+------------------+
+                     |
+                     v
++---------------------------------------+
+| Sort users by similarity score        |
++--------------------+------------------+
+                     |
+                     v
++---------------------------------------+
+| Shuffle the sorted list for diversity |
+| (Fisher-Yates algorithm)              |
++--------------------+------------------+
+                     |
+                     v
++---------------------------------------+
+| Return the top 10 recommended users   |
++--------------------+------------------+
+
+Explanation:
+Database Query: The queryDatabase function simulates a SQL query to fetch user profiles excluding the current user.
+Similarity Calculation: The calculateSimilarity function calculates a similarity score based on common interests and university, with different weights assigned to each.
+Shuffling: The shuffleArray function introduces randomness by shuffling the list of recommendations.
+Recommendation Function: The recommendMatches function integrates everything, fetching users, calculating similarity, sorting, shuffling, and returning the top 10 recommendations.
