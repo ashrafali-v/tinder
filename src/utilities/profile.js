@@ -56,7 +56,7 @@ const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 export const recommendMatches  = async () => {
   const currentUser = { id: 1, name: 'Alice', interests: 'music,movies', location: 'Harvard' };
   // Fetch user data from database excluding the current user
-  const query = `SELECT id, name, interests, location FROM users WHERE id != ${currentUser.id}`;
+  const query = `SELECT id, name, interests, university FROM users WHERE id != ${currentUser.id}`;
   await delay(3000); // to simulate loader
   const users = await queryDatabase(query, [currentUser.id]);
 
