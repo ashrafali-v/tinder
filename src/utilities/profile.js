@@ -57,7 +57,7 @@ export const recommendMatches  = async () => {
   const currentUser = { id: 1, name: 'Alice', interests: 'music,movies', location: 'Harvard' };
   // Fetch user data from database excluding the current user
   const query = `SELECT id, name, interests, location FROM users WHERE id != ${currentUser.id}`;
-  await delay(3000);
+  await delay(3000); // to simulate loader
   const users = await queryDatabase(query, [currentUser.id]);
 
   const recommendations = users
@@ -67,6 +67,6 @@ export const recommendMatches  = async () => {
     })
     .sort((a, b) => b.similarityScore - a.similarityScore); // Sort by similarity score
 
-  //shuffleArray(recommendations); // Shuffle recommendations for randomness
+  shuffleArray(recommendations); // Shuffle recommendations for randomness
   return recommendations.slice(0, 10); // Return top 10 matches
 }

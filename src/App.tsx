@@ -6,7 +6,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <div className="App">
-          <h1>Tinder Profile Mimic</h1>
+          <h1>Welcome to Tinder Profile</h1>
           <Profile />
         </div>
       </header>
