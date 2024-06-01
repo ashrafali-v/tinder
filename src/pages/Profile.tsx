@@ -2,7 +2,7 @@ import React, { useState,useEffect } from "react";
 import styled from "styled-components";
 import ProfileCard from "../components/ProfileCard";
 import { useSwipeable } from "react-swipeable";
-import {recommendMatches} from "../utilities/profile-logic";
+import {recommendMatches} from "../utilities/profile";
 
 const SliderContainer = styled.div`
   display: flex;
